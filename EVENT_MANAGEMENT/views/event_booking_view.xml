@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+    <record id="event_booking_tree" model="ir.ui.view">
+        <field name="name">event booking</field>
+        <field name="model">event_booking</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="namee"/>
+                <field name="type"/>
+                <field name="date"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="customer"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="event_booking_form" model="ir.ui.view">
+        <field name="name">event booking</field>
+        <field name="model">event_booking</field>
+        <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirmed"/>
+                        <button name="button_confirm" string="Confirm" states="draft" class="oe_highlight" type="object"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                                <button name="action_catering" type="object" class="oe_stat_button" icon="fa-filter">
+
+                                    <span class="o_stat_text">Catering Service</span>
+                                </button>
+                            </div>
+                        <h1>
+                            <field name="namee"/>
+                        </h1>
+
+
+                        <group>
+                            <group>
+                                <field name="customer" widget="res_partner_many2one" context="{'show_address': 1}"
+                                options="{&quot;always_reload&quot;: True}"/>
+
+                                <field name="type"/>
+                                <field name="date"/>
+
+                            </group>
+                            <group>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="duration"/>
+
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+        </field>
+    </record>
+</data>
+</odoo>

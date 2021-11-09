@@ -1,0 +1,57 @@
+<odoo>
+    <data>
+        <record model="ir.rule" id="event_types_rule">
+            <field name="name">types</field>
+            <field name="model_id" ref="model_event_types"/>
+        </record>
+        <record model="ir.rule" id="event_booking_rule">
+            <field name="name">booking</field>
+            <field name="model_id" ref="model_event_booking"/>
+        </record>
+        <record id="service_rule" model="ir.rule">
+            <field name="name">service</field>
+            <field name="model_id" ref="model_service"/>
+        </record>
+        <record id="service_rule" model="ir.rule">
+            <field name="name">service</field>
+            <field name="model_id" ref="model_service_line"/>
+        </record>
+
+        <record id="catering_rule" model="ir.rule">
+            <field name="name">catering</field>
+            <field name="model_id" ref="model_catering"/>
+        </record>
+        <record id="catering_dish_rule" model="ir.rule">
+            <field name="name">catering_dish</field>
+            <field name="model_id" ref="model_catering_dish"/>
+        </record>
+        <record id="catering_dish_line_rule" model="ir.rule">
+            <field name="name">catering_dish-line</field>
+            <field name="model_id" ref="model_catering_dish_line"/>
+        </record>
+        <record id="catering_dish_line_rule" model="ir.rule">
+            <field name="name">catering_dish-line</field>
+            <field name="model_id" ref="model_dishline_welcome"/>
+        </record>
+        <record id="catering_dish_line_rule" model="ir.rule">
+            <field name="name">catering_dish-line</field>
+            <field name="model_id" ref="model_dishline_lunch"/>
+        </record>
+        <record id="catering_dish_line_rule" model="ir.rule">
+            <field name="name">catering_dish-line</field>
+            <field name="model_id" ref="model_dishline_dinner"/>
+        </record>
+        <record id="catering_dish_line_rule" model="ir.rule">
+            <field name="name">catering_dish-line</field>
+            <field name="model_id" ref="model_dishline_snacks"/>
+        </record>
+        <record id="catering_dish_line_rule" model="ir.rule">
+            <field name="name">catering_dish-line</field>
+            <field name="model_id" ref="model_dishline_beverages"/>
+        </record>
+        <record id="catering_dish_line_rule" model="ir.rule">
+            <field name="name">catering_dish-line</field>
+            <field name="model_id" ref="model_dishline_break"/>
+        </record>
+    </data>
+</odoo>

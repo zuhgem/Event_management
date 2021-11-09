@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+
+
+    <record id="service_action" model="ir.actions.act_window">
+        <field name="name">Service</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">service</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <record id="event_action_book" model="ir.actions.act_window">
+        <field name="name">Event Booking</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">event_booking</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="event_types_tree" model="ir.ui.view">
+        <field name="name">event types</field>
+        <field name="model">event_types</field>
+        <field name="arch" type="xml">
+
+            <tree>
+                <field name="name"/>
+                <field name="code"/>
+            </tree>
+
+        </field>
+    </record>
+
+    <record id="event_types_form" model="ir.ui.view">
+        <field name="name">event types</field>
+        <field name="model">event_types</field>
+        <field name="arch" type="xml">
+                <form>
+
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="code" copy="False"/>
+                            </group>
+
+                            <group>
+                                <field name="image" widget="image"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+        </field>
+    </record>
+
+    <record id="event_action" model="ir.actions.act_window">
+        <field name="name">Event Types</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">event_types</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+        <record id="catering_action" model="ir.actions.act_window">
+        <field name="name">Catering</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">catering</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+        <record id="catering_dish_action" model="ir.actions.act_window">
+        <field name="name">Catering</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">catering_dish</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+        <menuitem id="event_management" name="Event Management" sequence="4"/>
+        <menuitem id="event_ty" name="Event Management" parent="event_management" sequence="2"/>
+        <menuitem id="configuration" name="Configuration" parent="event_management" sequence="2"/>
+
+        <menuitem id="event" name="Event Types" parent="event_ty" action="event_action" sequence="1"/>
+
+        <menuitem id="booking" name="Event Booking" parent="event_ty" sequence="2" action="event_action_book"/>
+
+        <menuitem id="service" name="Service" parent="configuration" sequence="1" action="service_action"/>
+        <menuitem id="catering" name="Catering" parent="event_ty" sequence="3" action="catering_action"/>
+        <menuitem id="dish" name="Catering" parent="configuration" sequence="4" action="catering_dish_action"/>
+
+
+
+    </data>
+</odoo>
+

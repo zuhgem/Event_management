@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+event_types,event_types,model_event_types,base.group_user,1,1,1,1
+event_booking,event_booking,model_event_booking,base.group_user,1,1,1,1
+service,service,model_service,base.group_user,1,1,1,1
+service,service,model_service_line,base.group_user,1,1,1,1
+catering,catering,model_catering,base.group_user,1,1,1,1
+catering_dish,catering_dish,model_catering_dish,base.group_user,1,1,1,1
+catering_line,catering_line,model_catering_dish_line,base.group_user,1,1,1,1
+catering_line_welcome,catering_line_welcome,model_dishline_welcome,base.group_user,1,1,1,1
+catering_line_lunch,catering_line_break,model_dishline_lunch,base.group_user,1,1,1,1
+catering_line_dinner,catering_line_dinner,model_dishline_dinner,base.group_user,1,1,1,1
+catering_line_beverages,catering_line_beverages,model_dishline_beverages,base.group_user,1,1,1,1
+catering_line_break,catering_line_break,model_dishline_break,base.group_user,1,1,1,1
+catering_line_snacks,catering_line_snacks,model_dishline_snacks,base.group_user,1,1,1,1

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <record id="_dish_tree" model="ir.ui.view">
+            <field name ='name'>catering dish</field>
+            <field name="model">catering_dish</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="category"/>
+                    <field name="unit"/>
+                    <field name="unit_price"/>
+                </tree>
+            </field>
+        </record>
+        <record id="_dish_form" model="ir.ui.view">
+            <field name="name">catering dish</field>
+            <field name="model">catering_dish</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="category"/>
+                                <field name="unit"/>
+                                <field name="unit_price" widget='monetary'/>
+                            </group>
+                            <group>
+                                <field name="image" widget="image"/>
+                            </group>
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
