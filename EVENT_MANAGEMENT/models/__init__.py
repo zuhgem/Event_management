@@ -5,3 +5,4 @@ from . import catering
 from . import catering_dish
 from . import catering_dish_line
 from . import dishline
+from . import catering_invoice

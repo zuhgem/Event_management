@@ -73,7 +73,6 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-
         <menuitem id="event_management" name="Event Management" sequence="4"/>
         <menuitem id="event_ty" name="Event Management" parent="event_management" sequence="2"/>
         <menuitem id="configuration" name="Configuration" parent="event_management" sequence="2"/>

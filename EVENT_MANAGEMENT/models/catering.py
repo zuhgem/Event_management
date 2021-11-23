@@ -1,6 +1,6 @@
 import datetime
 
-from odoo import models, fields, api, _
+from odoo import models, fields, api
 
 
 class Catering(models.Model):
@@ -61,6 +61,7 @@ class Catering(models.Model):
     snacks_drinks = fields.Boolean("Snacks and Drinks", default=False)
     beverages = fields.Boolean("Beverages", default=False)
 
+    partner_ids = fields.One2many('catering_dish_line', 'beverages_id')
     welcome_drink_ids = fields.One2many("dishline.welcome", "welcome_drink_id")
     break_fast_ids = fields.One2many("dishline.break", "break_fast_id")
     lunch_ids = fields.One2many("dishline.lunch", "lunch_id")
@@ -69,7 +70,7 @@ class Catering(models.Model):
     beverages_ids = fields.One2many("dishline.beverages", "beverages_id")
 
     state = fields.Selection([('draft', 'Draft'), ('confirmed', 'Confirmed'), ('delivered', 'Delivered'),
-                              ('invoiced', 'Invoiced'), ('expired', 'Expired')], default="draft")
+                              ('invoiced', 'Invoiced'), ('expired', 'Expired'), ('paid', 'Paid')], default="draft")
 
     total = fields.Float(string="Total Price", compute='_compute_total', store=True)
     welcome_total = fields.Float(string="Welcome Drink Price", compute='_compute_welcome_total', store=True)
@@ -129,6 +130,80 @@ class Catering(models.Model):
             'domain': []
         }
 
+    def compute_data(self, line):
+        return {
+            "name": line.dish.name,
+            'quantity': line.qty,
+            'price_unit': line.dish_price
+        }
+
+    def data_line(self):
+        order_lines = [(5, 0, 0)]
+        for line in self.welcome_drink_ids:
+            data = self.compute_data(line)
+            order_lines.append(data)
+        for line in self.break_fast_ids:
+            data = self.compute_data(line)
+            order_lines.append(data)
+        for line in self.lunch_ids:
+            data = self.compute_data(line)
+            order_lines.append(data)
+        for line in self.dinner_ids:
+            data = self.compute_data(line)
+            order_lines.append(data)
+        for line in self.drinks_ids:
+            data = self.compute_data(line)
+            order_lines.append(data)
+        for line in self.beverages_ids:
+            data = self.compute_data(line)
+            order_lines.append(data)
+        return order_lines
+
+    def button_invoice(self):
+        data = self.data_line()
+
+        invoice = self.env['account.move'].create({
+            'move_type': 'out_invoice',
+            'partner_id': self.event_name.customer,
+            'ref': self.name,
+            'state': 'draft',
+            'invoice_date': datetime.datetime.today(),
+            'date': datetime.datetime.today(),
+            'invoice_line_ids': data
+
+        })
 
 
+class Confirm(models.Model):
+    _inherit = 'event_booking'
 
+    def button_confirm(self):
+        self.state = 'confirmed'
+        confirm = self.env['catering'].search([('event_name', '=', self.namee)])
+        if confirm:
+            confirm.state = 'confirmed'
+        return super(Confirm, self).button_confirm
+
+
+class Invoice(models.Model):
+    _inherit = 'account.move'
+
+    def action_post(self):
+        invoice = self.env['catering'].search([('name', '=', self.ref)])
+        if invoice:
+            invoice.state = 'invoiced'
+        return super(Invoice, self).action_post()
+
+    def action_register_payment(self):
+        invoice = self.env['catering'].search([('name', '=', self.ref)])
+        if invoice:
+            invoice.state = 'paid'
+        return super(Invoice, self).action_register_payment()
+
+
+class Paid(models.Model):
+    _inherit = 'account.payment'
+
+    def action_post(self):
+        self.env['catering'].write({'state': 'paid'})
+        return super(Paid, self).action_post()

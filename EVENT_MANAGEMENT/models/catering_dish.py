@@ -6,6 +6,7 @@ from odoo import models, fields
 class CateringDish(models.Model):
     _name = "catering_dish"
     _description = "catering"
+    _rec_name = 'name'
 
     name = fields.Char("Dish Name", required='True')
     image = fields.Binary("Image")
@@ -14,7 +15,7 @@ class CateringDish(models.Model):
     category = fields.Selection([('welcome_drink', 'Welcome Drink'), ('Break_fast', 'Break Fast'), ('lunch', 'Lunch'),
                                  ('dinner', 'Dinner'), ('snacks_drinks', 'Snacks and Drinks'),
                                  ('beverages', 'Beverages')], string="Category")
-    unit_price = fields.Float("Unit Price", required=True)
+    unit_price = fields.Float("Unit Price", required=True, default=1.0)
 
 
 

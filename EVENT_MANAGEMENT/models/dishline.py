@@ -15,7 +15,7 @@ class DishLine(models.Model):
     welcome_drink_id = fields.Many2one('catering', string='catering')
 
     description = fields.Text('Description')
-    qty = fields.Integer('Quantity')
+    qty = fields.Integer('Quantity', default=1.0)
     sub_total = fields.Float(string="Sub Total", compute='compute_price', store=True)
 
     @api.onchange("dish")
@@ -55,7 +55,7 @@ class DishLineBreak(models.Model):
     break_fast_id = fields.Many2one('catering', string='catering')
 
     description = fields.Text('Description')
-    qty = fields.Integer('Quantity')
+    qty = fields.Integer('Quantity', default=1.0)
     sub_total = fields.Float(string="Sub Total", compute='compute_price', store=True)
 
     @api.onchange("dish")
@@ -95,7 +95,7 @@ class DishLineluch(models.Model):
     lunch_id = fields.Many2one('catering', string='catering')
 
     description = fields.Text('Description')
-    qty = fields.Integer('Quantity')
+    qty = fields.Integer('Quantity', default=1.0)
     sub_total = fields.Float(string="Sub Total", compute='compute_price', store=True)
 
     @api.onchange("dish")
@@ -134,7 +134,7 @@ class DishLineDinner(models.Model):
     dinner_id = fields.Many2one('catering', string='catering')
 
     description = fields.Text('Description')
-    qty = fields.Integer('Quantity')
+    qty = fields.Integer('Quantity', default=1.0)
     sub_total = fields.Float(string="Sub Total", compute='compute_price', store=True)
 
     @api.onchange("dish")
@@ -174,7 +174,7 @@ class DishLineSnacks(models.Model):
     drinks_id = fields.Many2one('catering', string='catering')
 
     description = fields.Text('Description')
-    qty = fields.Integer('Quantity')
+    qty = fields.Integer('Quantity', default=1.0)
     sub_total = fields.Float(string="Sub Total", compute='compute_price', store=True)
 
     @api.onchange("dish")
@@ -214,7 +214,7 @@ class DishLineBeverages(models.Model):
     beverages_id = fields.Many2one('catering', string='catering')
 
     description = fields.Text('Description')
-    qty = fields.Integer('Quantity')
+    qty = fields.Integer('Quantity', default=1.0)
     sub_total = fields.Float(string="Sub Total", compute='compute_price', store=True)
 
     @api.onchange("dish")

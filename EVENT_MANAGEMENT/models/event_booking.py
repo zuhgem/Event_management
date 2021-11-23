@@ -37,8 +37,7 @@ class EventBooking(models.Model):
             self.duration = 0
 
     def button_confirm(self):
-        for rec in self:
-            rec.write({'state': 'confirmed'})
+        self.state = 'confirmed'
 
     def action_catering(self):
         return {

@@ -12,8 +12,8 @@
             <field name="name">service</field>
             <field name="model_id" ref="model_service"/>
         </record>
-        <record id="service_rule" model="ir.rule">
-            <field name="name">service</field>
+        <record id="service_line_rule" model="ir.rule">
+            <field name="name">service_line</field>
             <field name="model_id" ref="model_service_line"/>
         </record>
 
@@ -52,6 +52,10 @@
         <record id="catering_dish_line_rule" model="ir.rule">
             <field name="name">catering_dish-line</field>
             <field name="model_id" ref="model_dishline_break"/>
+        </record>
+        <record id="invoice_rule" model="ir.rule">
+            <field name="name">invoice</field>
+            <field name="model_id" ref="model_invoice"/>
         </record>
     </data>
 </odoo>
